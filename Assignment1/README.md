@@ -35,3 +35,4 @@
 ---
 
 ## 5. Conclusions
+Within each of the scenarios we examined, increasing the recovery rate has consistently reduced both peak infections and total deaths. High transmission conditions produce higher peaks and more deaths, and accordingly, with the feedback we received during the tutorial, increase the strain on healthcare capacity and staff. Interventions such as Oseltamivir raise the recovery rate (and reduce the illness duration) and can lower mortality. Overall, the results highlight recovery rate improvements as an important complementary lever for epidemic control alongside measures of the transmission rates.
