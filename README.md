@@ -10,4 +10,8 @@ To do this, for each reaction in the model, we checked whether their id was in t
 
 As we had checked in advance that EX_glc__D_e was not part of the csv file, the implemented function did not affect it.
 
+## Task 4
+The goal of this task was to investigate how the maximal biomass production rate changes when the glucose exchange reaction flux bound is varied.
 
+For this analysis, the enzyme activity-constrained E. coli model from Task 2 was used. The glucose uptake bound for EX_glc__D_e was varied from 1 to 15 mmol/gDW/h in steps of 0.1, and FBA was performed for each value.
+The growth rate increased at first, but then it levelled at about 0.87 $h^{-1}$. around 10.5–11 mmol/gDW/h, showing that glucose stopped being the limiting factor beyond this point.
