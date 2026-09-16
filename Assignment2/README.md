@@ -146,8 +146,9 @@ With the glucose bound of 5 mmol/gDW/hour the maximal biomass production rate dr
 ---
 
 ## 5. Part 4 — Further analysis
+The glucose exchange reaction bound (EX_glc__D_e) was varied from 1 to 15 mmol/gDW/h in increments of 0.1. For each value, an FBA optimization was performed and the maximal biomass production rate was plotted against the glucose uptake bound.
 
-The growth rate does not increase indefinitely with increasing glucose exchange flux bound. The maximal biomass production rate first increases almost linearly as the glucose uptake bound increases, meaning that the glucose availability is limiting growth in this range. However, at about 10.62 mmol/gDW/h, the curve reaches a plateau of 0.87 $h^{-1}$ approx. Beyond this point, allowing more glucose uptake does not increase the predicted growth rate, indicating that glucose is no longer the limiting factor and that another constraint in the enzyme activity-constrained metabolic model becomes limiting.
+Results show the growth rate does not increase indefinitely with increasing glucose exchange flux bound. The maximal biomass production rate first increases almost linearly as the glucose uptake bound increases, meaning that the glucose availability is limiting growth in this range. However, at about 10.62 mmol/gDW/h, the curve reaches a plateau of 0.87 $h^{-1}$ approx. Beyond this point, allowing more glucose uptake does not increase the predicted growth rate, indicating that glucose is no longer the limiting factor and that another constraint in the enzyme activity-constrained metabolic model becomes limiting.
 
 In the second part acetate exchange (EX_ac_e) reaction becomes active. At a bound of 5 no acetate is secreted while at a bound of 10 about 1.25 mmol/gDW/hour is secreted. At the plateau it stays at 2.5. Since oxygen update is limited, the extra glucose cannot be fully utilized and part of the carbon is then secreted as acetate.
 
