@@ -85,3 +85,28 @@ Write a ~1500 word (more is fine but please dont overdo it) report on your choic
 * Do Part I well. It is the foundation of your assignment and your grade. Part II serves as your opportunity to show off your creativity and skills, and to push towards that holy 10. But Part I suffices to get a very good grade.
 * If you are unsure about anything, please reach out (t.weidler@maastrichtuniversity.nl).
 * If you find any issues/bugs with the codes here that I missed while testing, please let me know.
+
+# Arda's Results, Comparing sound classification models with STG activity using RSA
+
+Arda Ntourali i6196749
+
+### RDMs and comparison
+
+I used extract_activations and built a RDM per layer with rsatoolbox. I used pearson correlation between two sounds activation patterns. For model RDM's I used Spearman Rho-a to compare them. Researching online and discussing with AI, I decided to use Rho-A after being pointed out to rsatoolbox's documentation which recommends rho-a for comparisons where RDMs can contain ties.
+
+We receive a rho-a = 0.132 which shows that some of the STG pattern is categorically structured.
+
+### Findings
+
+- Accuracy went higher from wavelet with 6.2% to the inspired model achieving 41.9%. My CRNN implementation achieved 39.4%, while frequency masking increased this to 40.7%. A cool test here is to apply masking directly to Inspired model.
+- STG alignment for the waveform model was negatively aligned −0.029, while uninspired 0.033, inspired 0.055, and the CRNN models scored 0.052. Frequency masking increased CRNN alignment to 0.064. YAMNet achieved 0.098. We can see that frequency masking really boosts the alignment. A personal take on that is the reduced overfitting.
+
+## Part II
+
+I tried frequency masking to have model focus more on the spectral analysis of the sound waves rather than frequency cues. Frequency masking improved classification and STG alignment (0.052 → 0.064). It was also the only small spectrogram model where training increased alignment. 
+
+# Future work
+
+- Frequency masking on the inspired model
+- ReLU6 vs ReLU could be examined further to understand really what matters. 
+- Report quality could be poor and not meeting 1500 character demand. Is kept short.
