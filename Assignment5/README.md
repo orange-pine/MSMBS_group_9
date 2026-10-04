@@ -2,7 +2,7 @@
 
 ## Assignment 5
 
-1. Open pathogen_infection model and run for a duration of 2h. Screenshot
+### 1. Open pathogen_infection model and run for a duration of 2h. Screenshot
 initial and every 30 min. Describe how the infected region spreads and
 how the tissue deforms.
 
