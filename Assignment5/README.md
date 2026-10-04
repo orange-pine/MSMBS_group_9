@@ -2,14 +2,11 @@
 
 ## Assignment 5
 
-### 1. Open pathogen_infection model and run for a duration of 2h. Screenshot
-initial and every 30 min. Describe how the infected region spreads and
-how the tissue deforms.
+### 1. Open pathogen_infection model and run for a duration of 2h. Screenshot initial and every 30 min. Describe how the infected region spreads and how the tissue deforms.
 
-### 2. In the model files (Github repo – Models – Infection – infection.cpp9:
-Read CellHouseKeeping. In your own words: how is a cell's wall stiffness
-reduced as a function of its chemical level? What does the pathogen do
-differently?
+In "Screenshots(task1)" folder you can find the five screenshots. What we noticed is that in the first minutes the cells divided and they lost their rectangular shape to take on more circular ones. Afterwards, nothing changed anymore in the structure of the tissue, only a weak vibration was still perceptible. About the spread...
+
+### 2. In the model files (Github repo – Models – Infection – infection.cpp9: Read CellHouseKeeping. In your own words: how is a cell's wall stiffness reduced as a function of its chemical level? What does the pathogen do differently?
 
 ``
 void Infection::CellHouseKeeping(CellBase *c) {
@@ -51,12 +48,11 @@ void Infection::CellHouseKeeping(CellBase *c) {
 }
 ``
 
-### 3. In the model files (Github repo – Models – Infection – infection.cpp9:
-Read CelltoCellTransport. How is the diffusion coefficient defined?
-Explain the feedback loop this creates and sketch it: chemical lowers
-stiffness, lower stiffness raises diffusion, faster diffusion spreads the
-chemical. Is this positive or negative feedback?
+### 3. In the model files (Github repo – Models – Infection – infection.cpp9: Read CelltoCellTransport. How is the diffusion coefficient defined? Explain the feedback loop this creates and sketch it: chemical lowers stiffness, lower stiffness raises diffusion, faster diffusion spreads the chemical. Is this positive or negative feedback?
 
+The diffusion coefficient is defined in function of the stiffness of the wall. If the stiffness is above a certain treshhold: a lower stiffness leads to a higher diffusion rate. So they are inversily proportional to each other.
+
+Once the initial wall stiffness is defined, the diffusion coefficient is calculated based on it => Even if this diffusion is very low in the beginning, chemicals are going to be flowing from one cell to the next, which is going to reduce the wall stiffness => This in turn is going to increase the diffusion coefficient => Then the chemical flow will be even higher, which will again lower the wall stiffness. So in conclusion this is a positive feedback because the initial behaviour (diffusion) is amplified not reduced.
 ```
 void Infection::CelltoCellTransport(Wall *w, double *dchem_c1, double *dchem_c2) {
 	// add biochemical transport rules here
@@ -81,15 +77,8 @@ void Infection::CelltoCellTransport(Wall *w, double *dchem_c1, double *dchem_c2)
 }
 ```
 
-### 4. Raise and lower rel_cell_div_threshold.
-How does it change how fast the pathogen population expands? Document two runs.
+### 4. Raise and lower rel_cell_div_threshold. How does it change how fast the pathogen population expands? Document two runs.
 
-### 5. What is a fundamental difference regarding cell neighbours in this model
-compared to all other models that you have worked with so far?
+### 5. What is a fundamental difference regarding cell neighbours in this model compared to all other models that you have worked with so far?
 
-### 6. The plant evolves a defense: cells above a chemical threshold stiffen
-their walls. Describe in pseudocode where in CellHouseKeeping this
-would go and what sign of feedback it adds. Do not implement it.
-Pseudocode for the different sections is enough!
-Since you are not programming in this assignment, you will document the
-simulations and observations in the readme file.
+### 6. The plant evolves a defense: cells above a chemical threshold stiffen their walls. Describe in pseudocode where in CellHouseKeeping this would go and what sign of feedback it adds. Do not implement it. Pseudocode for the different sections is enough! Since you are not programming in this assignment, you will document the simulations and observations in the readme file.
