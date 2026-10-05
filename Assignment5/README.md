@@ -81,4 +81,38 @@ void Infection::CelltoCellTransport(Wall *w, double *dchem_c1, double *dchem_c2)
 
 ### 5. What is a fundamental difference regarding cell neighbours in this model compared to all other models that you have worked with so far?
 
-### 6. The plant evolves a defense: cells above a chemical threshold stiffen their walls. Describe in pseudocode where in CellHouseKeeping this would go and what sign of feedback it adds. Do not implement it. Pseudocode for the different sections is enough! Since you are not programming in this assignment, you will document the simulations and observations in the readme file.
+### 6. The plant evolves a defense: cells above a chemical threshold stiffen their walls. Describe in pseudocode where in CellHouseKeeping this would go and what sign of feedback it adds. Do not implement it. 
+
+    //cell wall weakening happens here
+    double patho_chem_level = c->Chemical(0) / (0.5);
+    if (patho_chem_level > 1.2) {
+        patho_chem_level = 1.2;
+    }
+    double stiffness_inf = 3;
+    if(patho_chem_level>0.1 && c->CellType()!=2){
+        c->SetCellVeto(false);
+    
+    //Defense would go here, after the pathogen-induced weakening
+    has been calculated, but naturally before stiffness_inf is applied
+    to the wall elements.
+    
+    //If pathogen chemical becomes higher than a defense threshold:
+    if patho_chem_level > DEFENSE_THRESHOLD:
+        //then;
+        increase stiffnes_inf
+    
+        stiffness_inf = 3 - (patho_chem_level);
+    c->LoopWallElements([stiffness_inf](auto wallElementInfo){
+        wallElementInfo->getWallElement()->setStiffness(stiffness_inf);
+    });
+    }
+    else{
+        c->LoopWallElements([stiffness_inf](auto wallElementInfo){
+        wallElementInfo->getWallElement()->setStiffness(stiffness_inf);
+        });
+        c->SetCellVeto(true);
+    }
+
+This defense adds negative feedback. Since, as previous exercises showed higher wall stiffness reduces the diffusion coefficient of the pathogen chemical. 
+Therefore, when cells above the chemical threshold stiffen their walls, further chemical spread is slowed. This defense counteracts the original positive 
+feedback in where higher chemical concentrations caused wall weakening, which increased diffusion and caused further spread of the pathogen.
