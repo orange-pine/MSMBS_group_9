@@ -51,6 +51,10 @@ void Infection::CellHouseKeeping(CellBase *c) {
 }
 ``
 
+The model treats the pathogen as a chemical signal that over time weakens nearby non-pathogen cells. Under normal conditions cells have their default wall stiffness which is rigid and mechanically resistant. Once the pathogen chemical rises above a small activation threshold, the stiffness of non-pathogen cells decrease linearly with exposure. It's walls become softer and easier to deform as more pathogen chemical a cell senses. At maximum exposure, the wall retains only about 60% of its original stiffness so the cell is weaker but mechanically still stable.
+
+Pathogen cells however are excluded from this weakening response and keep their regular wall stiffness. Instead they increase their preffered size and divide once they grow sufficiently, allowing the pathogen population to expand while the surrounding host cells become more vulnarable.
+
 ### 3. In the model files (Github repo – Models – Infection – infection.cpp9:
 Read CelltoCellTransport. How is the diffusion coefficient defined?
 Explain the feedback loop this creates and sketch it: chemical lowers
