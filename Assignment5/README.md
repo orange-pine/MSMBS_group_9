@@ -4,7 +4,7 @@
 
 ### 1. Open pathogen_infection model and run for a duration of 2h. Screenshot initial and every 30 min. Describe how the infected region spreads and how the tissue deforms.
 
-In "Screenshots(task1)" folder you can find the five screenshots. What we noticed is that in the first minutes the cells divided and they lost their rectangular shape to take on more circular ones. Afterwards, nothing changed anymore in the structure of the tissue, only a weak vibration was still perceptible. About the spread...
+In "Screenshots(task1)" folder you can find the five screenshots. What we noticed is that in the first minutes the cells divided and they lost their rectangular shape to take on a more irregular one (sharp angles, etc..). Then the infection started spreading, first infecting the two layers (by layers we mean the columns of cells) next to the pathogen (on the very left) then gradual infecting the neighbouring layers to its right. We noticed that generally the central cell was infected first in each layer and then it spread to the other cells of that layer (so the cells above and underneath that central cell). This probably comes from the fact that the patogen made contact with the tissue around the center of its left side. 
 
 ### 2. In the model files (Github repo – Models – Infection – infection.cpp9: Read CellHouseKeeping. In your own words: how is a cell's wall stiffness reduced as a function of its chemical level? What does the pathogen do differently?
 
