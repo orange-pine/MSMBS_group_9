@@ -48,7 +48,15 @@ void Infection::CellHouseKeeping(CellBase *c) {
 }
 ``
 
-### 3. In the model files (Github repo – Models – Infection – infection.cpp9: Read CelltoCellTransport. How is the diffusion coefficient defined? Explain the feedback loop this creates and sketch it: chemical lowers stiffness, lower stiffness raises diffusion, faster diffusion spreads the chemical. Is this positive or negative feedback?
+The model treats the pathogen as a chemical signal that over time weakens nearby non-pathogen cells. Under normal conditions cells have their default wall stiffness which is rigid and mechanically resistant. Once the pathogen chemical rises above a small activation threshold, the stiffness of non-pathogen cells decrease linearly with exposure. It's walls become softer and easier to deform as more pathogen chemical a cell senses. At maximum exposure, the wall retains only about 60% of its original stiffness so the cell is weaker but mechanically still stable.
+
+Pathogen cells however are excluded from this weakening response and keep their regular wall stiffness. Instead they increase their preffered size and divide once they grow sufficiently, allowing the pathogen population to expand while the surrounding host cells become more vulnarable.
+
+### 3. In the model files (Github repo – Models – Infection – infection.cpp9:
+Read CelltoCellTransport. How is the diffusion coefficient defined?
+Explain the feedback loop this creates and sketch it: chemical lowers
+stiffness, lower stiffness raises diffusion, faster diffusion spreads the
+chemical. Is this positive or negative feedback?
 
 The diffusion coefficient is defined in function of the stiffness of the wall. If the stiffness is above a certain treshhold: a lower stiffness leads to a higher diffusion rate. So they are inversily proportional to each other.
 
@@ -79,7 +87,15 @@ void Infection::CelltoCellTransport(Wall *w, double *dchem_c1, double *dchem_c2)
 
 ### 4. Raise and lower rel_cell_div_threshold. How does it change how fast the pathogen population expands? Document two runs.
 
+### 5. What is a fundamental difference regarding cell neighbours in this model
+compared to all other models that you have worked with so far?
 
+### 6. The plant evolves a defense: cells above a chemical threshold stiffen
+their walls. Describe in pseudocode where in CellHouseKeeping this
+would go and what sign of feedback it adds. Do not implement it.
+Pseudocode for the different sections is enough!
+Since you are not programming in this assignment, you will document the
+simulations and observations in the readme file.
 
 Control (rel_cel_div_threshold = 2) Screenshots -> ["Control 4","Control 8","Control 12]
 | Time | Pathogen Area | Pathogen Cells | Weakened Cells | Procambium Cells | Xylem Cells   |
