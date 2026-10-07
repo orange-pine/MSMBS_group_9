@@ -79,9 +79,55 @@ void Infection::CelltoCellTransport(Wall *w, double *dchem_c1, double *dchem_c2)
 
 ### 4. Raise and lower rel_cell_div_threshold. How does it change how fast the pathogen population expands? Document two runs.
 
+
+
+Control (rel_cel_div_threshold = 2) Screenshots -> ["Control 4","Control 8","Control 12]
+| Time | Pathogen Area | Pathogen Cells | Weakened Cells | Procambium Cells | Xylem Cells   |
+|------|---------------|----------------|----------------|------------------|---------------|
+| 4h   | 3637          | 2              | 17             | 19               | 10            |
+| 8h   | 14201         | 16             | 22             | 13               | 10            |
+| 12h  | 41101         | 31             | 36             | 0                | 10            |
+|------|---------------|----------------|----------------|------------------|---------------|
+
+Higher (rel_cel_div_threshold = 4) Screenshots -> ["High 4","High 8","High 12]
+| Time | Pathogen Area | Pathogen Cells | Weakened Cells | Procambium Cells | Xylem Cells   |
+|------|---------------|----------------|----------------|------------------|---------------|
+| 4h   | 3209          | 1              | 16             | 20               | 10            |
+| 8h   | 7356          | 2              | 19             | 17               | 10            |
+| 12h  | 14959         | 8              | 27             | 9                | 10            |
+|------|---------------|----------------|----------------|------------------|---------------|
+
+Lower (rel_cel_div_threshold = 1) Screenshots -> ["Low 4","Low 8","Low 12]
+| Time | Pathogen Area | Pathogen Cells | Weakened Cells | Procambium Cells | Xylem Cells   |
+|------|---------------|----------------|----------------|------------------|---------------|
+| 4h   | 5828          | 7              | 17             | 19               | 10            |
+| 8h   | ~71590        | 55             | 29             | 7                | 10            |
+| 12h  | ~287120       | 109            | 43             | 0                | 3             |
+|------|---------------|----------------|----------------|------------------|---------------|
+
+Time - approximate total simulation time
+Pathogen Area - sometimes approximated via average cell area from random sampling
+Pathogen Cells - (red)
+Weakened Cells - attacked procambium (violet) and xylem (light green)
+Procambium Cells - healthy (cyan)
+Xylem Cells - healthy (green)
+
+
+Cell division threshold very significantly affects the rate at which the pathogen infection progresses. With only the fungi cells being able to divide,
+the change becomes directly proportional to the rate at which the infected area spreads. Since each fungi cell is set to act as though its chemical
+concentration is constant, more instances leads to greater exchange of chemicals between cells, conversely creating a positive feedback loop,
+leading to quicker cell wall deterioration, faster diffusion of chemicals, and overall swifter infection spread.
+
+
+
 ### 5. What is a fundamental difference regarding cell neighbours in this model compared to all other models that you have worked with so far?
 
-### 6. The plant evolves a defense: cells above a chemical threshold stiffen their walls. Describe in pseudocode where in CellHouseKeeping this would go and what sign of feedback it adds. Do not implement it. 
+The main difference lies in neighbour mutability. In the previous models, a cell could feasibly only gain neighbours via division. In case of the pathogen infection model, once a cell gets infected,
+they become subjected to movement, meaning a given cell's healthy neighbours can be pushed out and replaced by pathogenic cells. Paired with the fungal cells constant chemical concentration, as well as its
+monopoly on expansion and division, such displacement allows the fungal infection to grow at an increasingly faster rate.
+
+
+### 6. The plant evolves a defense: cells above a chemical threshold stiffen their walls. Describe in pseudocode where in CellHouseKeeping this would go and what sign of feedback it adds. Do not implement it. Pseudocode for the different sections is enough! Since you are not programming in this assignment, you will document the simulations and observations in the readme file.
 
     //cell wall weakening happens here
     double patho_chem_level = c->Chemical(0) / (0.5);
