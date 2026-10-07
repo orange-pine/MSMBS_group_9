@@ -152,8 +152,10 @@ monopoly on expansion and division, such displacement allows the fungal infectio
     }
     double stiffness_inf = 3;
     if(patho_chem_level>0.1 && c->CellType()!=2){
-        c->SetCellVeto(false);
-    
+    c->SetCellVeto(false);
+    //normal pathogen induced weakening
+    stiffness_inf = 3 - (patho_chem_level);    
+
     //Defense would go here, after the pathogen-induced weakening
     has been calculated, but naturally before stiffness_inf is applied
     to the wall elements.
@@ -162,8 +164,7 @@ monopoly on expansion and division, such displacement allows the fungal infectio
     if patho_chem_level > DEFENSE_THRESHOLD:
         //then;
         increase stiffnes_inf
-    
-        stiffness_inf = 3 - (patho_chem_level);
+
     c->LoopWallElements([stiffness_inf](auto wallElementInfo){
         wallElementInfo->getWallElement()->setStiffness(stiffness_inf);
     });
@@ -172,8 +173,7 @@ monopoly on expansion and division, such displacement allows the fungal infectio
         c->LoopWallElements([stiffness_inf](auto wallElementInfo){
         wallElementInfo->getWallElement()->setStiffness(stiffness_inf);
         });
-        c->SetCellVeto(true);
-    }
+        c->SetCellVeto(tr
 
 This defense adds negative feedback. Since, as previous exercises showed higher wall stiffness reduces the diffusion coefficient of the pathogen chemical. 
 Therefore, when cells above the chemical threshold stiffen their walls, further chemical spread is slowed. This defense counteracts the original positive 
